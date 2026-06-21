@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <title>ACPC Notebook - Chapter 1: Introduction & Python Reference</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 10mm 10mm;
+            background-color: #ffffff;
+            @bottom-right {
+                content: "Page " counter(page) " of " counter(pages);
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 7.5pt;
+                color: #64748b;
+            }
+            @bottom-left {
+                content: "ACPC Reference Manual | Chapter 1: Introduction & Foundation";
+                font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+                font-size: 7.5pt;
+                color: #64748b;
+            }
+        }
+        
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #1e293b;
+            line-height: 1.35;
+            font-size: 9pt;
+            background-color: #ffffff;
+        }
+
+        /* Header Style */
+        .header {
+            background-color: #0f172a;
+            color: #ffffff;
+            padding: 12px 18px;
+            border-radius: 6px;
+            margin-bottom: 12px;
+            border-left: 5px solid #eab308;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 16pt;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            margin: 3px 0 0 0;
+            font-size: 9pt;
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        /* Two-Column Layout using Tables for WeasyPrint Compliance */
+        .layout-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 0;
+        }
+
+        .layout-cell {
+            width: 50%;
+            vertical-align: top;
+            padding: 0 6px;
+        }
+
+        .layout-cell:first-child {
+            padding-left: 0;
+        }
+
+        .layout-cell:last-child {
+            padding-right: 0;
+        }
+
+        /* Section Cards */
+        .card {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            page-break-inside: avoid;
+        }
+
+        .card-title {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #0f172a;
+            margin-top: 0;
+            margin-bottom: 6px;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+        }
+
+        /* Code Block Styling */
+        pre {
+            background-color: #0f172a;
+            color: #e2e8f0;
+            padding: 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 8pt;
+            font-weight: 600;
+            margin: 6px 0;
+            overflow: hidden;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .comment { color: #64748b; font-style: italic; }
+        .keyword { color: #38bdf8; font-weight: bold; }
+        .builtin { color: #fbbf24; }
+        .string { color: #34d399; }
+
+        /* Math Styling */
+        .math {
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            font-weight: 600;
+            color: #b45309;
+        }
+        
+        .math-block {
+            text-align: center;
+            margin: 4px 0;
+            font-size: 9.5pt;
+            font-family: 'Times New Roman', Times, serif;
+            font-style: italic;
+            color: #b45309;
+        }
+
+        /* Bullet Points */
+        ul {
+            margin: 0;
+            padding-left: 16px;
+        }
+
+        li {
+            margin-bottom: 3px;
+        }
+
+        strong {
+            color: #0f172a;
+        }
+
+        /* Tables inside cards */
+        .inner-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 6px;
+        }
+
+        .inner-table th, .inner-table td {
+            border: 1px solid #cbd5e1;
+            padding: 4px 5px;
+            font-size: 8pt;
+            text-align: left;
+        }
+
+        .inner-table th {
+            background-color: #f1f5f9;
+            color: #0f172a;
+            font-weight: 700;
+        }
+
+        .highlight-box {
+            background-color: #fffbeb;
+            border-left: 4px solid #d97706;
+            padding: 6px 10px;
+            margin-top: 6px;
+            border-radius: 0 4px 4px 0;
+            font-size: 8.5pt;
+        }
+
+        .danger-box {
+            background-color: #fef2f2;
+            border-left: 4px solid #dc2626;
+            padding: 6px 10px;
+            margin-top: 6px;
+            border-radius: 0 4px 4px 0;
+            font-size: 8.5pt;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <div class="header">
+        <h1>ACPC Reference Manual | Chapter 1: Introduction & Python Core</h1>
+        <p>Optimized Team Notebook (3 Students, 1 Computer, 5 Hours) — High-Performance Python Blueprint</p>
+    </div>
+
+    <!-- MAIN TWO COLUMN LAYOUT -->
+    <table class="layout-table">
+        <tr>
+            <!-- COLUMN 1 -->
+            <td class="layout-cell">
+                
+                <!-- 1.1 Competitive Strategy -->
+                <div class="card">
+                    <div class="card-title">1.1 Competitive Programming Strategy</div>
+                    <ul>
+                        <li><strong>Design vs. Execution:</strong> Algorithmic correctness stems from sound mathematical logic. Optimize complexity mathematically before writing a single line of code.</li>
+                        <li><strong>Contest Ideology:</strong> Code is single-use, concise (sub-200 lines), and non-maintained. Prioritize rapid prototyping and immediate edge-case handling.</li>
+                        <li><strong>The Python Advantage:</strong> Native support for <strong>Arbitrary Precision Arithmetic</strong> (BigInt) completely eliminates integer overflow errors, saving crucial overhead compared to C++.</li>
+                    </ul>
+                </div>
+
+                <!-- 1.2 Fast I/O -->
+                <div class="card">
+                    <div class="card-title">1.2 High-Performance Fast I/O</div>
+                    <p style="margin:0 0 4px 0;">Standard <span class="math">input()</span> and <span class="math">print()</span> are heavily buffered and trigger TLE on large streams. Leverage <span class="math">sys</span> optimizations instead:</p>
+                    
+                    <strong>1) Line-by-Line Tokenization (Standard Bootstrapping):</strong>
+                    <pre><span class="keyword">import</span> sys
+input = sys.stdin.readline <span class="comment"># Drops-in cleanly, preserves trailing '\n'</span></pre>
+
+                    <strong>2) Bulk Processing (Fastest for massive flat datasets):</strong>
+                    <pre><span class="keyword">import</span> sys
+tokens = sys.stdin.read().split()
+<span class="comment"># 'tokens' is an iterator or list containing all items sequentially</span></pre>
+
+                    <strong>3) Arbitrary/Stream Processing (Unknown Stream Bounds / EOF):</strong>
+                    <pre><span class="keyword">import</span> sys
+<span class="keyword">for</span> line <span class="keyword">in</span> sys.stdin:
+    tokens = line.split() <span class="comment"># Process dynamic lines on the fly</span></pre>
+
+                    <strong>4) Non-Blocking Output Block:</strong>
+                    <pre>sys.stdout.write(<span class="builtin">str</span>(ans) + <span class="string">"\n"</span>) <span class="comment"># Avoids automatic buffer flushing</span></pre>
+
+                    <strong>5) IO Redirection (For local test environments):</strong>
+                    <pre>sys.stdin = <span class="builtin">open</span>(<span class="string">'input.txt'</span>, <span class="string">'r'</span>)
+sys.stdout = <span class="builtin">open</span>(<span class="string">'output.txt'</span>, <span class="string">'w'</span>)</pre>
+                </div>
+
+                <!-- 1.3 Working with Numbers -->
+                <div class="card">
+                    <div class="card-title">1.3 Numerical Data Quirks & Pitfalls</div>
+                    <ul>
+                        <li><strong>Integers:</strong> Boundless memory expansion in Python 3. C++ limits data to 64-bit bounds (<span class="math">~9 &middot; 10^{18}</span>), whereas Python handles arbitrary magnitudes smoothly.</li>
+                        <li><strong>Negative Modulo Operations:</strong> In Python, <span class="math">a % m</span> matches the sign of <span class="math">m</span>. To enforce a strictly positive remaining residue across all language environments:
+                            <div class="math-block">remainder = ((x % m) + m) % m</div>
+                        </li>
+                        <li><strong>Floats (64-bit IEEE 754):</strong> Equivalent to C++ double.</li>
+                        <li><strong>Precision Traps:</strong> Never evaluate floating-point equality via <span class="math">==</span> due to round-off drift. Compute safely relative to an epsilon tolerance parameter (<span class="math">&epsilon; = 10^{-9}</span>):</li>
+                    </ul>
+                    <pre><span class="keyword">if</span> <span class="builtin">abs</span>(a - b) &lt; <span class="style">1e-9</span>:
+    <span class="comment"># Logic for structural equivalence</span></pre>
+                </div>
+
+            </td>
+
+            <!-- COLUMN 2 -->
+            <td class="layout-cell">
+                
+                <!-- 1.4 Mathematics Reference -->
+                <div class="card">
+                    <div class="card-title">1.4 Essential Mathematical Toolkit</div>
+                    
+                    <strong>Progressions and Sequences:</strong>
+                    <ul>
+                        <li>Summation of first <span class="math">n</span> natural numbers:
+                            <div class="math-block">S = n(n + 1) / 2</div>
+                        </li>
+                        <li>Arithmetic Progression (AP) Series Sum:
+                            <div class="math-block">S = n(a + l) / 2 &nbsp;&nbsp;<span class="comment" style="font-size:7.5pt;">(a = first, l = last term)</span></div>
+                        </li>
+                        <li>Geometric Progression (GP) Series Sum:
+                            <div class="math-block">S = a &middot; (r^n - 1) / (r - 1) &nbsp;&nbsp;<span class="comment" style="font-size:7.5pt;">(r = common ratio)</span></div>
+                        </li>
+                    </ul>
+
+                    <strong>Modular Arithmetic Modular Axioms:</strong>
+                    <div class="math-block">(a + b) % m = ((a % m) + (b % m)) % m</div>
+                    <div class="math-block">(a &middot; b) % m = ((a % m) &middot; (b % m)) % m</div>
+                    <div class="highlight-box">
+                        <strong>Performance Guardrail:</strong> Never compute <span class="math">pow(base, exp) % mod</span> via the <span class="math">**</span> operator, as it computes large intermediates. Use the three-argument built-in function <span class="math">pow(base, exp, mod)</span> for fast logarithmic evaluation.
+                    </div>
+
+                    <strong style="display:block; margin-top:5px;">Logarithmic Rules:</strong>
+                    <ul>
+                        <li>Def: <span class="math">\log_k(x) = a \iff k^a = x</span></li>
+                        <li><span class="math">\log_2(n)</span> counts structural operations during binary tree partitions or binary search splits.</li>
+                        <li>The precise length/digits of an integer <span class="math">x</span> in radix system base <span class="math">b</span>:
+                            <div class="math-block">Digits = &lfloor; log_b(x) &rfloor; + 1</div>
+                        </li>
+                    </ul>
+
+                    <strong>Mathematical Operations (<span class="math">import math</span>):</strong>
+                    <ul>
+                        <li>Floor bounds mapping: <span class="math">math.floor(x)</span></li>
+                        <li>Ceiling bounds mapping: <span class="math">math.ceil(x)</span></li>
+                        <li>Combinatorial calculations: <span class="math">math.factorial(n)</span></li>
+                        <li>Fibonacci recurrence: <span class="math">f(n) = f(n-1) + f(n-2)</span>, with base cases initialized at <span class="math">f(0)=0, f(1)=1</span>.</li>
+                    </ul>
+                </div>
+
+                <!-- Set Theory & Logic -->
+                <div class="card">
+                    <div class="card-title">1.5 Set Relations & Formal Logic</div>
+                    <table class="inner-table">
+                        <tr><th>Symbol</th><th>Formal Operation</th><th>Behavioral Mapping / Property</th></tr>
+                        <tr><td><span class="math">A &cap; B</span></td><td>Intersection</td><td>Shared matching elements within both spaces</td></tr>
+                        <tr><td><span class="math">A &cup; B</span></td><td>Union</td><td>All safe unique elements without repetition</td></tr>
+                        <tr><td><span class="math">A' / Aᶜ</span></td><td>Complement</td><td>Elements outside universe constraints of A</td></tr>
+                        <tr><td><span class="math">2^n</span></td><td>Power Set Size</td><td>Total subsets generated by an n-sized collection</td></tr>
+                        <tr><td><span class="math">&not;</span></td><td>Negation (NOT)</td><td>Flips semantic condition states cleanly</td></tr>
+                        <tr><td><span class="math">&and;</span></td><td>Conjunction (AND)</td><td>Evaluates True exclusively if both expressions hold</td></tr>
+                        <tr><td><span class="math">&or;</span></td><td>Disjunction (OR)</td><td>Evaluates True if a single argument satisfies</td></tr>
+                        <tr><td><span class="math">&rArr;</span></td><td>Implication</td><td>If hypothesis conditional matches, conclusion holds</td></tr>
+                        <tr><td><span class="math">&hArr;</span></td><td>Equivalence</td><td>True iff both parameters hold identical truth values</td></tr>
+                        <tr><td><span class="math">&forall; / &exist;</span></td><td>Quantifiers</td><td><span class="math">&forall;</span> state denotes "For All", <span class="math">&exist;</span> represents "There Exists"</td></tr>
+                    </table>
+                </div>
+
+                <!-- 1.6 Logistics & Tips -->
+                <div class="card">
+                    <div class="card-title">1.6 On-Site Logistics & Language Traps</div>
+                    <ul>
+                        <li><strong>Contest Setup:</strong> 3 developers, 1 singular workstation terminal, 5 hours runtime window, 10–12 problem modules. Paralleled thinking and offline desk checking are highly critical.</li>
+                        <li><strong>Scoreboard Freeze:</strong> Rankings freeze during the final 60 minutes of competition to build tension. Work from hardcopies during this time.</li>
+                        <li style="color: #b91c1c;"><strong>Critical Division Pitfall:</strong> The single slash operator (<span class="math">/</span>) casts targets into floating-point numbers automatically, losing precision on large numbers. <strong>Enforce integer truncating division using double slash (<span class="math">//</span>) unconditionally.</strong></li>
+                    </ul>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
